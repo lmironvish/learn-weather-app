@@ -6,11 +6,13 @@ import {
 const cityForm = document.querySelector('form');
 const card = document.querySelector('.card');
 const details = document.querySelector('.details');
+const time = document.querySelector('img.time');
+const icon = document.querySelector('ico.time');
+
 
 const updateUI = (data) => {
 
-  const cityDets = data.cityDets;
-  const weather = data.weather;
+  const{ cityDets, weather} = data;
 
   details.innerHTML = `
   <div class="text-muted text-uppercase text-center details">
@@ -20,7 +22,14 @@ const updateUI = (data) => {
               <span>${weather.Temperature.Metric.Value}</span>
               <span>&deg;C</span>
             </div>
-  `
+  `;
+
+  let timeSrc = null;
+  if(weather.IsDayTime){
+    timeSrc = 'img/day.svg'
+  }
+
+  if(card.classList.contains('d-none')) card.classList.remove('d-none');
 };
 const updateCity = async (city) => {
 
