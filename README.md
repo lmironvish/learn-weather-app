@@ -1,3 +1,2 @@
-# learn-js-mathsprintgame
-
+# learn-javascript-weather-app
 ---
