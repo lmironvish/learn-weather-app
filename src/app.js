@@ -1,49 +1,47 @@
-import { getCity, getWeather } from "./forecast.js"
-
 const cityForm = document.querySelector("form")
 const card = document.querySelector(".card")
 const details = document.querySelector(".details")
 const time = document.querySelector("img.time")
 const icon = document.querySelector(".icon img")
+const forecast = new Forecast();
 
-const updateUI = (data) => {
-  const { cityDets, weather } = data
+console.log(forecast);
 
-  details.innerHTML = `
-  <div class="text-muted text-uppercase text-center details">
-            <h5 class="my-3">${cityDets.EnglishName}</h5>
-            <div class="my-3">${weather.WeatherText}</div>
-            <div class="display-4 my-4">
-              <span>${weather.Temperature.Metric.Value}</span>
-              <span>&deg;C</span>
-            </div>
-  `
+// const updateUI = (data) => {
 
-  const iconSrc = `img/icons/${weather.WeatherIcon}.svg`
-  icon.setAttribute("src", iconSrc)
+//   const { cityDets, weather } = data
 
-  let timeSrc = weather.IsDayTime ? "img/day.svg" : "img/night.svg"
-  time.setAttribute("src", timeSrc)
+//   details.innerHTML = `
+//   <div class="text-muted text-uppercase text-center details">
+//             <h5 class="my-3">${cityDets.EnglishName}</h5>
+//             <div class="my-3">${weather.WeatherText}</div>
+//             <div class="display-4 my-4">
+//               <span>${weather.Temperature.Metric.Value}</span>
+//               <span>&deg;C</span>
+//             </div>
+//   `
 
-  if (card.classList.contains("d-none")) card.classList.remove("d-none")
-}
+//   const iconSrc = `img/icons/${weather.WeatherIcon}.svg`
+//   icon.setAttribute("src", iconSrc)
 
-const updateCity = async (city) => {
-  const cityDets = await getCity(city)
-  const weather = await getWeather(cityDets.Key)
-  return { cityDets, weather }
-}
+//   let timeSrc = weather.IsDayTime ? "img/day.svg" : "img/night.svg"
+//   time.setAttribute("src", timeSrc)
 
-cityForm.addEventListener("submit", (e) => {
-  // prevent default action
-  e.preventDefault()
+//   if (card.classList.contains("d-none")) card.classList.remove("d-none")
+// }
 
-  // get city value
-  const city = cityForm.city.value.trim()
-  cityForm.reset()
+// const updateCity = async (city) => {
+//   const cityDets = await getCity(city)
+//   const weather = await getWeather(cityDets.Key)
+//   return { cityDets, weather }
+// }
 
-  // update the ui with new city
-  updateCity(city)
-    .then((data) => updateUI(data))
-    .catch((err) => console.log(err))
-})
+// cityForm.addEventListener("submit", (e) => {
+//   e.preventDefault()
+
+//   const city = cityForm.city.value.trim()
+//   cityForm.reset()
+//   updateCity(city)
+//     .then((data) => updateUI(data))
+//     .catch((err) => console.log(err))
+// })
