@@ -1,7 +1,7 @@
 {
-  "name": "learn-js-mathsprintgame",
+  "name": "learn-js-weatherapp",
   "version": "1.0.0",
-  "description": "learn-js-mathsprintgame",
+  "description": "learn-js-weatherapp",
   "private": true,
   "scripts": {
     "dev": "webpack serve --open",
