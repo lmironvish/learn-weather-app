@@ -8,11 +8,7 @@ const icon = document.querySelector(".icon img")
 
 const forecast = new Forecast()
 
-console.log(forecast)
-
 const updateUI = (data) => {
-
-  console.log(data);
   const { cityDets, weather } = data
 
   details.innerHTML = `
@@ -49,15 +45,15 @@ cityForm.addEventListener("submit", (e) => {
   cityForm.reset()
 
   // update the ui with new city
-  forecast.updateCity(city)
+  updateCity(city)
     .then((data) => updateUI(data))
     .catch((err) => console.log(err))
 
-    localStorage.setItem('city', city);
+  localStorage.setItem("city", city)
 })
 
-if(localStorage.getItem('city')){
-  forecast.updateCity(localStorage.setItem('city'))
-  .then(data => updateUI(data))
-  .catch(err => console.log(err));
+if (localStorage.getItem("city")) {
+  updateCity(localStorage.setItem("city"))
+    .then((data) => updateUI(data))
+    .catch((err) => console.log(err))
 }
